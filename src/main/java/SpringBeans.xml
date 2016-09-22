@@ -1,0 +1,90 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+ 
+    <bean id="helloBean" class="Student.Yang.HelloWorld">
+        <property name="name" value="huaizuo" />
+    </bean>
+    
+    <!-- 通过设置type值指定参数位置和类型来区分重载的构造器 -->
+     
+ <bean id="car" class="Student.Yang.Car">
+ <constructor-arg value="Audi"></constructor-arg>
+ <!-- 通过value<!CDATA[]>设置特殊字符 -->
+ <constructor-arg type="java.lang.String">
+ <value><![CDATA[<ShangHai>]]></value>
+ </constructor-arg>
+ <!--  <constructor-arg value="haibao"></constructor-arg>-->
+ <constructor-arg value="500000" type="double"></constructor-arg>
+ </bean>
+ <bean id="car2" class="Student.Yang.Car">
+ <constructor-arg value="Audi" type="java.lang.String"></constructor-arg>
+ <constructor-arg value="haibao" type="java.lang.String"></constructor-arg>
+ <constructor-arg value="343434" type="int"></constructor-arg>
+ </bean>
+ <!-- 内部bean不能被外部bean使用，只能在内部使用 -->
+ <bean id="person" class="Student.Yang.Person">
+ <property name="name" value="Tom"></property>
+ <property name="age" value="23"></property>
+ <property name="car" ref="car2"></property>
+ <!-- <property name="car"><ref bean="car2"/></property>-->
+ </bean>
+ <bean id="person2" class="Student.Yang.Person">
+ <constructor-arg value="Jerry"></constructor-arg>
+ <constructor-arg value="25"></constructor-arg>
+ <constructor-arg ref="car"></constructor-arg>
+ <!--  <constructor-arg><null/></constructor-arg>-->
+ <!-- 级联属性赋值，注意属性需要先初始化，后才可以为级联属性赋值，否则报异常，和struts2 不同 -->
+ <property name="car.maxSpeed" value="250"></property>
+ </bean>
+ <!-- 测试集合属性 -->
+ <bean id="listcar" class="Student.Yang.listCar">
+ <property name="name" value="Mike"></property>
+ <property name="age" value="27"></property>
+ <property name="car">
+ <list>
+ <ref bean="car"/>
+ <ref bean="car2"/>
+ </list>
+ </property>
+ </bean>
+ <!-- Map -->
+ <bean id="map" class="Student.Yang.MapPerson">
+ <property name="name" value="Rose"></property> 
+ <property name="age" value="27"></property>
+ <property name="cars">
+ <map>
+ <entry key="AA" value-ref="car"></entry>
+ <entry key="BB" value-ref="car2"></entry>
+ </map>
+ </property>
+ </bean>
+ <bean id="datasource" class="Student.Yang.DataSource">
+<property name="properties">
+<props>
+<prop key="user">root</prop>
+<prop key="password">1234</prop>
+<prop key="jdbcurl">jdbc:mysql://test</prop>
+<prop key="driverClass">com.mysql.jdbc.Driver</prop>
+</props>
+</property>
+</bean>
+<util:list id="cars">
+<ref bean="car"/>
+<ref bean="car2"/>
+</util:list>
+<bean id="listcar2" class="Student.Yang.listCar">
+ <property name="name" value="Mike"></property>
+ <property name="age" value="27"></property>
+ <property name="car" ref="cars"></property>
+ </bean>
+ <bean id="person5" class="Student.Yang.Person" p:age="35" p:name="Jaxin" p:car-ref="car"></bean>
+  
+</beans>
