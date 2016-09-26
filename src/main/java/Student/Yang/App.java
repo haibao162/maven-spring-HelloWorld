@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "SpringBeans.xml");
- 
+        //https://github.com/haibao162/maven-spring-HelloWorld
         HelloWorld obj = (HelloWorld) context.getBean("helloBean");
         obj.printHello();
         Car car=(Car)context.getBean("car");
@@ -33,7 +33,7 @@ public class App {
         System.out.println(map.toString());
         //properties
         DataSource datasource=(DataSource)context.getBean("datasource");
-       System.out.println(datasource.toString());
+       System.out.println(datasource.toString()+","+datasource.getProperties().getProperty("password"));
         //namespace
        person=(Person)context.getBean("person5");
        System.out.println(person.toString());

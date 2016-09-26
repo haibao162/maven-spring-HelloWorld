@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+<bean id="address" class="autowire.Address"
+      p:city="Beijing" p:street="Tiananmen"></bean>
+<bean id="car" class="autowire.Car"
+      p:brand="Audi" p:price="300000"></bean>
+      <!-- 
+<bean id="person" class="autowire.Person"
+      p:name="Tom" p:address-ref="address" p:car-ref="car"></bean> -->
+    
+    <!--可以用autowire属性指定自动装配的方式，byName根据bean的名字和当前bean的setter方法的属性名进行自动装配，没有匹配的不装配
+ByType根据bean的类型和当前bean的属性进行自动装配,若有两个类型的bean,抛异常
+      -->
+      <bean id="person" class="autowire.Person"
+      p:name="Tom" autowire="byName"></bean>
+      <bean id="address2" class="autowire.Address"
+      p:city="Shanghai" p:street="NanJing Road"></bean>
+      
+      <!-- extends id="adress" bean,bean的abstract属性设置为true，表示bean不能被实例化 -->
+      <bean id="address3" p:street="Centural road" parent="address"></bean>
+
+      <!--1.Class属性没有指定，则bean必须为抽象bean，否则出错,抽象bean可以作为模板bean被继承 
+          2.子bean从父中继承配置，包括一些属性等，也可以覆盖从父bean继承过来的属性
+          3.父bean可以作为配置模板，也可作为bean实例，只想作为模板需要把abstract属性设置为true，抽象bean不会被实例化
+          4.Bean的autowire和abstract属性不会被继承
+      -->
+      <bean id="address4" class="autowire.Address"
+      p:city="Guangzhou" p:street="Hengda" abstract="true"></bean>
+      <!-- depends-on要求必须关联car属性,逗号或空格指定多个bean -->
+      <bean id="person2" class="autowire.Person"
+      p:name="Tim" p:address-ref="address" depends-on="car1"></bean>
+      <bean id="car1" class="autowire.Car"
+      p:brand="Biyadi" p:price="100000"></bean>
+</beans>

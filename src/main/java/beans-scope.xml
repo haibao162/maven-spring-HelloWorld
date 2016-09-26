@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<!-- 使用scope属性配置bean作用域，
+singleton：默认值，容器初始化时创建bean实例，在整个容器生命周期内这一个bean
+prototype:原型的，容器初始化时不创建bean实例，每次请求时创建一个新的bean实例，并返回-->	
+   <bean id="car" class="scope.Car"
+   scope="singleton">
+       <property name="brand" value="aodi"></property>
+   <property name="price" value="200000"></property>
+   </bean>
+
+</beans>
