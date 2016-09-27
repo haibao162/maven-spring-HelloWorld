@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   <bean id="car" class="cycle.Car"
+   init-method="init2" destroy-method="destory">
+   <property name="brand" value="toyota"></property>
+   </bean>
+   <!--配置bean的后置处理器  -->
+   <bean class="cycle.MyBeanPostProcessor"></bean>
+</beans>
