@@ -52,9 +52,8 @@ context:include-filter 子节点指定包含哪些表达式的组件，
   <!--<context:exclude-filter type="assignable"
   expression="annotation.Repository.UserRepository"/> -->
   
-  <context:include-filter type="assignable"
-  expression="annotation.Repository.UserRepository"/>
-  
+  <!--  <context:include-filter type="assignable"
+  expression="annotation.Repository.UserRepository"/>-->  
 </context:component-scan>
 
 

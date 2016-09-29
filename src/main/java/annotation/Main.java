@@ -56,5 +56,8 @@ public static void main(String[] args){
     //annotation.Repository.UserRepositoryImpl@24b1d79b
     userRepositoryImpl.save();
     //UserRepository Save...
+    
+    userController.execute();
+    
 }
 }

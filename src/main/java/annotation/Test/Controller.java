@@ -8,20 +8,20 @@
  * under which the software has been supplied.
  */
  
-package annotation.controller;
+package annotation.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
-import annotation.service.UserService;
-
-@Controller
-public class UserController {
-public void execute(){
-	System.out.println("UserController execute...");
-	userService.add();
-}
-
+/**
+ * 
+ * @author predix -
+ */
+@Component
+public class Controller {
 @Autowired
-private UserService userService;
+private haibao hai;
+public void run(){
+System.out.println(hai);
+}
 }

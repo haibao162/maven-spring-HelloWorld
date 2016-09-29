@@ -8,20 +8,24 @@
  * under which the software has been supplied.
  */
  
-package annotation.controller;
+package annotation.Repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 
-import annotation.service.UserService;
+/**
+ * 
+ * 
+ */
+@Repository(value="userRepository")
+public class UserJdbcRepository implements UserRepository{
 
-@Controller
-public class UserController {
-public void execute(){
-	System.out.println("UserController execute...");
-	userService.add();
-}
+	/* (non-Javadoc)
+	 * @see annotation.Repository.UserRepository#save()
+	 */
+	public void save() {
+		// TODO Auto-generated method stub
+		System.out.println("UserJdbcRepository save...");
+	   
+	}
 
-@Autowired
-private UserService userService;
 }

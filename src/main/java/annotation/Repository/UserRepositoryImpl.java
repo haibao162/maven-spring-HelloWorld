@@ -10,7 +10,10 @@
  
 package annotation.Repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import annotation.TestObject;
 
 
 @Repository(value="haibao162")
@@ -21,7 +24,10 @@ public class UserRepositoryImpl implements UserRepository{
 	 */
 	public void save() {
 		// TODO Auto-generated method stub
-		System.out.println("UserRepository Save...");
+		System.out.println("UserRepositoryImpl Save...");
+		System.out.println(to);
 	}
-
+	
+@Autowired(required=false)
+private TestObject to;
 }

@@ -8,20 +8,15 @@
  * under which the software has been supplied.
  */
  
-package annotation.controller;
+package generic.di;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 
-import annotation.service.UserService;
+/**
+ * 
+ * @author predix -
+ */
+@Repository
+public class UserRepository extends BaseRepository<User>{
 
-@Controller
-public class UserController {
-public void execute(){
-	System.out.println("UserController execute...");
-	userService.add();
-}
-
-@Autowired
-private UserService userService;
 }
